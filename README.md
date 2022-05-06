@@ -78,7 +78,7 @@
     docker-compose run -w /code/mysite django-web python manage.py migrate
     ```
 
-1. database APIのお試し実行
+1. database APIの実行
 
     ```bash
     docker-compose run -w /code/mysite django-web python manage.py shell
@@ -90,4 +90,49 @@
 
     ```bash
     docker-compose run -w /code/mysite django-web python manage.py createsuperuser
+    ```
+
+## テストの実行
+
+1. `polls/test.py`ファイルを編集する
+
+1. テストを実行する
+
+    ```bash
+    docker-compose run -w /code/mysite django-web python manage.py test polls
+    ```
+
+## API経由でのテストクライアントの利用
+
+1. database APIの実行
+
+    ```bash
+    docker-compose run -w /code/mysite django-web python manage.py shell
+    ```
+
+1. テスト環境のセットアップ
+
+    ```bash
+    from django.test.utils import setup_test_environment
+    setup_test_environment()
+    ```
+
+1. テストクラスのインポート
+
+    ```bash
+    from django.test import Client
+    client = Client()
+    ```
+
+1. テスト実行
+
+    ```bash
+    response = client.get('/')
+    response.status_code
+
+    from django.urls import reverse
+    response = client.get(reverse('polls:index'))
+    response.status_code
+    response.content
+    response.context['latest_question_list']
     ```
