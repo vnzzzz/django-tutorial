@@ -40,7 +40,7 @@
 1. djangoのバージョン確認
 
     ```bash
-    docker-compose run django-web python -m django --version  
+    docker-compose exec django-web python -m django --version  
     ```
 
 ## 初めてのアプリ
@@ -48,13 +48,13 @@
 1. pollsディレクトリの作成
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py startapp polls
+    docker-compose exec -w /code/mysite django-web python manage.py startapp polls
     ```
 
 1. 初期migrationの実施
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py migrate
+    docker-compose exec -w /code/mysite django-web python manage.py migrate
     ```
 
 1. `polls/models.py`でpollsのモデル設定
@@ -64,25 +64,25 @@
 1. migration用のファイルの作成
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py makemigrations polls
+    docker-compose exec -w /code/mysite django-web python manage.py makemigrations polls
     ```
 
 1. migrationで実行されるSQLの確認
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py sqlmigrate polls 0001
+    docker-compose exec -w /code/mysite django-web python manage.py sqlmigrate polls 0001
     ```
 
 1. migrationの実施
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py migrate
+    docker-compose exec -w /code/mysite django-web python manage.py migrate
     ```
 
 1. database APIの実行
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py shell
+    docker-compose exec -w /code/mysite django-web python manage.py shell
     ```
 
 ## 管理ユーザーの追加
@@ -90,7 +90,7 @@
 1. 管理ユーザーの作成
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py createsuperuser
+    docker-compose exec -w /code/mysite django-web python manage.py createsuperuser
     ```
 
 ## テストの実行
@@ -100,7 +100,7 @@
 1. テストを実行する
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py test polls
+    docker-compose exec -w /code/mysite django-web python manage.py test polls
     ```
 
 ## API経由でのテストクライアントの利用
@@ -108,7 +108,7 @@
 1. database APIの実行
 
     ```bash
-    docker-compose run -w /code/mysite django-web python manage.py shell
+    docker-compose exec -w /code/mysite django-web python manage.py shell
     ```
 
 1. テスト環境のセットアップ
