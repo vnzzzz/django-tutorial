@@ -3,6 +3,7 @@
 ## 目的
 
 - djangoについてなんとなく理解する
+  - [チュートリアル](https://docs.djangoproject.com/ja/4.0/contents/)をなぞるための環境を準備
 - port管理が面倒なのでtraefikの裏で動かす
   - traefikの構築については[こちら](https://github.com/vnzzzz/docker-mgr)を参照
 
